@@ -21,5 +21,8 @@ int main() {
     else{
         cout<<"stack is not empty";
     }
+    //no. of element in stack
+    cout<<endl;
+    cout<<"size of the stack"<<s.size();
     return 0;
 }
