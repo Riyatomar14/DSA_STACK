@@ -13,7 +13,7 @@ int main() {
     s.pop();
     //for top element 
     cout<<"the top element is "<<s.top();
-    //fir checking stack is empty 
+    //for checking stack is empty 
     cout<<endl;
     if(s.empty()){
         cout<<"stack is empty";
