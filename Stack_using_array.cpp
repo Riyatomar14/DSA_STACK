@@ -6,7 +6,7 @@ class Stack {
     int* arr;
     int top;
     int size;
-    
+
 public:
     // Constructor
     Stack(int size) {
@@ -22,7 +22,7 @@ public:
     
     // Push operation
     void push(int element) {
-        if (size-top >= 1) {
+        if (top < size - 1) {
             top++;
             arr[top] = element;
         } else {
@@ -39,7 +39,7 @@ public:
         }
     }
     
-    // Peek or top operation
+    // Peek operation
     int peek() {
         if (top >= 0) {
             return arr[top];
@@ -51,28 +51,75 @@ public:
     
     // Check if stack is empty
     bool isEmpty() {
-        if(top==-1){
-            cout<<"stack is empty"<<endl;
-            return true;
+        return top == -1;
+    }
+    
+    // Reverse the stack
+    void reverse() {
+        if (isEmpty()) {
+            cout << "Stack is empty, cannot reverse." << endl;
+            return;
         }
-        else{
-            cout<<"stack is not empty"<<endl;
-            return false;
+        
+        int s = top + 1; // Calculate the size of the stack
+        for (int i = 0; i < s / 2; i++) {
+            // Swap elements
+            int temp = arr[i];
+            arr[i] = arr[s - 1 - i];
+            arr[s - 1 - i] = temp;
+        }
+    }
+    
+    // Print stack elements
+    void print() {
+        if (isEmpty()) {
+            cout << "Stack is empty\n";
+            return;
+        }
+        for (int i = top; i >= 0; i--) {
+            cout << arr[i] << " "; 
+        }
+        cout << endl; 
+    }
+    
+    // Sort the stack
+    void sort() {
+        int s = top + 1; 
+        for (int i = 0; i < s; i++) {
+            for (int j = i + 1; j < s; j++) {
+                // Sort in ascending order
+                if (arr[i] > arr[j]) {
+                    // Swap elements
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
         }
     }
 };
 
 int main() {
-    //st instance if size 3.
-    Stack st(2);
+    Stack st(5); // Increased size for testing
     st.push(20);
     st.push(30);
     st.push(70);
-    st.push(7);//overflow
+    st.push(7); // Should not cause overflow
+    st.push(10); // Another push
+    
+    cout << "Original Stack: ";
+    st.print();
+    
+    st.sort(); // Sort the stack
+    cout << "Sorted Stack: ";
+    st.print(); // Print the sorted stack
+    
     st.pop();
-    cout << st.peek() << endl;
-    st.isEmpty();
-    st.pop();
-    st.isEmpty();
+    cout << "Top element after pop: " << st.peek() << endl;
+    st.reverse(); // Reverse the stack
+    cout << "Reversed Stack: ";
+    st.print(); // Print the reversed stack
+
     return 0;
 }
+
