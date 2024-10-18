@@ -1,4 +1,5 @@
 //stack using linked list
+//stack using linked list
 #include <iostream>
 using namespace std;
 
@@ -83,6 +84,22 @@ bool search(int value) {
     return false;
 }
 
+void reverse() {
+        node* prev = NULL;;
+        node* current = top;
+        node* next = NULL;;
+
+        while (current != NULL) {
+            next = current->next; 
+            current->next = prev; 
+            prev = current;       
+            current = next;       
+        }
+        top = prev; 
+}
+
+
+
 int main() {
     push(10);
     push(20);
@@ -106,6 +123,8 @@ int main() {
     } else {
         cout << "Stack is not empty" << endl;
     }
-
+    
+    reverse(); //revese the stack
+    print();
     return 0;
 }
